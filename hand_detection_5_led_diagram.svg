@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1050" viewBox="0 0 1700 1050">
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .title { font: 700 40px Arial, Helvetica, sans-serif; fill: #172033; }
+      .subtitle { font: 600 20px Arial, Helvetica, sans-serif; fill: #475569; }
+      .label { font: 700 23px Arial, Helvetica, sans-serif; fill: #172033; }
+      .small { font: 600 17px Arial, Helvetica, sans-serif; fill: #172033; }
+      .tiny { font: 600 14px Arial, Helvetica, sans-serif; fill: #172033; }
+      .arduino { fill: #1d8a6d; stroke: #0b4e3d; stroke-width: 5; }
+      .chip { fill: #145544; stroke: #08392d; stroke-width: 3; }
+      .usb { fill: #d5dbe3; stroke: #707985; stroke-width: 3; }
+      .bread { fill: #ffffff; stroke: #b8c4d2; stroke-width: 4; }
+      .pin { fill: #f5c542; stroke: #8c6b00; stroke-width: 2; }
+      .wire-red { stroke: #ef4444; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-yellow { stroke: #facc15; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-green { stroke: #22c55e; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-blue { stroke: #38bdf8; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-purple { stroke: #a855f7; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-black { stroke: #222831; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-usb { stroke: #64748b; stroke-width: 10; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 18 12; }
+      .led-red { fill: #ef4444; stroke: #991b1b; stroke-width: 3; }
+      .led-yellow { fill: #fde047; stroke: #a16207; stroke-width: 3; }
+      .led-green { fill: #22c55e; stroke: #166534; stroke-width: 3; }
+      .led-blue { fill: #38bdf8; stroke: #075985; stroke-width: 3; }
+      .led-purple { fill: #c084fc; stroke: #6b21a8; stroke-width: 3; }
+      .resistor { fill: #e9c46a; stroke: #775415; stroke-width: 3; }
+      .leg { stroke: #5d6673; stroke-width: 5; stroke-linecap: round; }
+      .screen { fill: #111827; stroke: #334155; stroke-width: 4; }
+      .camera { fill: #1f2937; stroke: #0f172a; stroke-width: 3; }
+      .callout { fill: #ffffff; stroke: #c9d4e1; stroke-width: 3; }
+      .hand { fill: #f2c6a0; stroke: #a16207; stroke-width: 4; }
+      .hand-line { stroke: #a16207; stroke-width: 4; fill: none; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1700" height="1050"/>
+  <text x="850" y="55" text-anchor="middle" class="title">Hand Detection 5 LED Control</text>
+  <text x="850" y="88" text-anchor="middle" class="subtitle">Python + MediaPipe detects fingers, Arduino turns LEDs on or off</text>
+
+  <!-- Laptop / Python side -->
+  <g id="computer">
+    <rect x="70" y="145" width="430" height="315" rx="20" class="screen"/>
+    <rect x="110" y="185" width="350" height="220" rx="8" fill="#f8fafc"/>
+    <circle cx="285" cy="165" r="13" class="camera"/>
+    <rect x="35" y="460" width="500" height="42" rx="9" fill="#cbd5e1" stroke="#64748b" stroke-width="3"/>
+    <text x="285" y="535" text-anchor="middle" class="label">Computer</text>
+    <text x="285" y="565" text-anchor="middle" class="small">Python + OpenCV + MediaPipe</text>
+
+    <!-- Hand on screen -->
+    <path d="M260 350 C250 325, 245 285, 250 250 C252 235, 275 237, 275 254 L276 306
+             L287 230 C290 213, 315 216, 314 235 L307 310
+             L330 240 C335 224, 359 230, 354 248 L335 318
+             L367 272 C377 258, 397 273, 387 288 L349 344
+             C335 374, 290 385, 260 350 Z" class="hand"/>
+    <path d="M275 306 C278 326, 286 340, 298 350" class="hand-line"/>
+    <path d="M307 310 C309 332, 315 346, 326 356" class="hand-line"/>
+    <path d="M335 318 C333 339, 337 352, 348 363" class="hand-line"/>
+    <text x="285" y="213" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#172033">Camera detects fingers</text>
+  </g>
+
+  <!-- Arduino -->
+  <g id="arduino">
+    <rect x="620" y="175" width="360" height="650" rx="24" class="arduino"/>
+    <text x="800" y="228" text-anchor="middle" font-family="Arial" font-size="36" font-weight="700" fill="#ffffff">ARDUINO UNO</text>
+    <rect x="710" y="320" width="180" height="105" rx="10" class="chip"/>
+    <text x="800" y="380" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">ATmega328P</text>
+    <rect x="728" y="720" width="145" height="58" rx="8" class="usb"/>
+    <text x="800" y="756" text-anchor="middle" class="label">USB</text>
+    <text x="800" y="865" text-anchor="middle" class="label">Serial data: 10110</text>
+    <text x="800" y="895" text-anchor="middle" class="small">1 = LED ON, 0 = LED OFF</text>
+
+    <text x="1025" y="280" class="label">DIGITAL PINS</text>
+    <circle cx="980" cy="325" r="11" class="pin"/><text x="1010" y="331" class="small">D2 Thumb LED</text>
+    <circle cx="980" cy="400" r="11" class="pin"/><text x="1010" y="406" class="small">D3 Index LED</text>
+    <circle cx="980" cy="475" r="11" class="pin"/><text x="1010" y="481" class="small">D4 Middle LED</text>
+    <circle cx="980" cy="550" r="11" class="pin"/><text x="1010" y="556" class="small">D5 Ring LED</text>
+    <circle cx="980" cy="625" r="11" class="pin"/><text x="1010" y="631" class="small">D6 Pinky LED</text>
+    <circle cx="980" cy="710" r="11" class="pin"/><text x="1010" y="716" class="small">GND</text>
+  </g>
+
+  <!-- Breadboard LED side -->
+  <g id="breadboard">
+    <rect x="1190" y="160" width="420" height="700" rx="22" class="bread"/>
+    <text x="1400" y="210" text-anchor="middle" class="label">5 LED OUTPUTS</text>
+    <rect x="1230" y="780" width="340" height="38" rx="8" fill="#e6f0fc" stroke="#1f77d0" stroke-width="2"/>
+    <text x="1245" y="804" class="small" fill="#1f77d0">GND rail</text>
+
+    <g id="leds">
+      <circle cx="1275" cy="325" r="27" class="led-red"/>
+      <line x1="1275" y1="352" x2="1275" y2="375" class="leg"/>
+      <rect x="1230" y="375" width="90" height="22" rx="5" class="resistor"/>
+      <text x="1345" y="332" class="small">Thumb LED</text>
+      <text x="1345" y="362" class="tiny">D2 -> LED -> 220 ohm -> GND</text>
+
+      <circle cx="1275" cy="400" r="27" class="led-yellow"/>
+      <line x1="1275" y1="427" x2="1275" y2="450" class="leg"/>
+      <rect x="1230" y="450" width="90" height="22" rx="5" class="resistor"/>
+      <text x="1345" y="407" class="small">Index LED</text>
+      <text x="1345" y="437" class="tiny">D3 -> LED -> 220 ohm -> GND</text>
+
+      <circle cx="1275" cy="475" r="27" class="led-green"/>
+      <line x1="1275" y1="502" x2="1275" y2="525" class="leg"/>
+      <rect x="1230" y="525" width="90" height="22" rx="5" class="resistor"/>
+      <text x="1345" y="482" class="small">Middle LED</text>
+      <text x="1345" y="512" class="tiny">D4 -> LED -> 220 ohm -> GND</text>
+
+      <circle cx="1275" cy="550" r="27" class="led-blue"/>
+      <line x1="1275" y1="577" x2="1275" y2="600" class="leg"/>
+      <rect x="1230" y="600" width="90" height="22" rx="5" class="resistor"/>
+      <text x="1345" y="557" class="small">Ring LED</text>
+      <text x="1345" y="587" class="tiny">D5 -> LED -> 220 ohm -> GND</text>
+
+      <circle cx="1275" cy="625" r="27" class="led-purple"/>
+      <line x1="1275" y1="652" x2="1275" y2="675" class="leg"/>
+      <rect x="1230" y="675" width="90" height="22" rx="5" class="resistor"/>
+      <text x="1345" y="632" class="small">Pinky LED</text>
+      <text x="1345" y="662" class="tiny">D6 -> LED -> 220 ohm -> GND</text>
+    </g>
+  </g>
+
+  <!-- Wires -->
+  <path d="M500 750 C545 745, 590 748, 728 748" class="wire-usb"/>
+  <text x="565" y="725" text-anchor="middle" class="small">USB serial connection</text>
+
+  <path d="M980 325 C1065 325, 1135 325, 1248 325" class="wire-red"/>
+  <path d="M980 400 C1065 400, 1135 400, 1248 400" class="wire-yellow"/>
+  <path d="M980 475 C1065 475, 1135 475, 1248 475" class="wire-green"/>
+  <path d="M980 550 C1065 550, 1135 550, 1248 550" class="wire-blue"/>
+  <path d="M980 625 C1065 625, 1135 625, 1248 625" class="wire-purple"/>
+
+  <path d="M1275 397 L1275 780 L980 710" class="wire-black"/>
+  <path d="M1275 472 L1275 780" class="wire-black"/>
+  <path d="M1275 547 L1275 780" class="wire-black"/>
+  <path d="M1275 622 L1275 780" class="wire-black"/>
+  <path d="M1275 697 L1275 780" class="wire-black"/>
+
+  <!-- Summary box -->
+  <rect x="90" y="910" width="1520" height="85" rx="16" class="callout"/>
+  <text x="125" y="945" class="label">Finger to LED Mapping</text>
+  <text x="125" y="975" class="small">Thumb -> D2, Index -> D3, Middle -> D4, Ring -> D5, Pinky -> D6. Python sends five digits to Arduino, for example 10110.</text>
+</svg>
